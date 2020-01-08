@@ -29,6 +29,7 @@ parser = argparse.ArgumentParser(description='Open-source image labeling tool')
 parser.add_argument('-i', '--input_dir', default='input', type=str, help='Path to input directory')
 parser.add_argument('-o', '--output_dir', default='output', type=str, help='Path to output directory')
 parser.add_argument('-t', '--thickness', default='1', type=int, help='Bounding box and cross line thickness')
+parser.add_argument('-c', '--classes_file', default='class_list.txt', type=str, help='Path to the ".txt" file with the classes definitions.')
 '''
 tracker_types = ['CSRT', 'KCF','MOSSE', 'MIL', 'BOOSTING', 'MEDIANFLOW', 'TLD', 'GOTURN', 'DASIAMRPN']
     Recomended tracker_type:
@@ -968,7 +969,7 @@ if __name__ == '__main__':
                     create_PASCAL_VOC_xml(ann_path, abs_path, folder_name, image_name, img_height, img_width, depth)
 
     # load class list
-    with open('class_list.txt') as f:
+    with open(args.classes_file) as f:
         CLASS_LIST = list(nonblank_lines(f))
     #print(CLASS_LIST)
     last_class_index = len(CLASS_LIST) - 1
